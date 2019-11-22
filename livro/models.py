@@ -9,15 +9,9 @@ class Livro(models.Model):
     anoPublicacao = models.CharField(max_length=50, blank=False)
     editora = models.CharField(max_length=50, blank=False)
     edicao = models.IntegerField(null=True)
+    autor = models.ManyToManyField(Autor)
+
 
     def __str__(self):
         return self.titulo
-# Create your models here.
-
-class Autores(models.Model):
-    livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
-    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.autor)
 # Create your models here.
