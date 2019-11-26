@@ -70,7 +70,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'readers.wsgi.application'
-
+AUTH_USER_MODEL = 'usuario.Usuario'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
