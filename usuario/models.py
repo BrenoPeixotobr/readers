@@ -10,7 +10,7 @@ class UserManager(BaseUserManager):
     def _create_user(self, username, email, password, is_staff, is_superuser, **extra_fields):
         now = timezone.now()
         if not username:
-            raise ValueError(_('The given username must be set'))
+            raise ValueError(_('Nome de usuário inválido.'))
         email = self.normalize_email(email)
         user = self.model(username=username, email=email, is_staff=is_staff, ativado=True, is_superuser=is_superuser, last_login=now, date_joined=now, **extra_fields)
         user.set_password(password)
@@ -41,7 +41,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     )
 
     cpf = models.CharField(primary_key=True,max_length=16)
-    username = models.CharField(_('username'), max_length=15, unique=True, help_text=_('Required. 15 characters or fewer. Letters, numbers and @/./+/-/_ characters'), validators=[ validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid username.'), _('invalid'))],default='teste')
+    username = models.CharField(_('username'), max_length=15, unique=True, help_text=_('Requerido. 15 caracteres ou menos. Letras, números e  @/./+/-/_'), validators=[ validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Insira um nome de usuário válido.'), _('inválido'))],default='teste')
     nome = models.CharField(null=False,max_length=30)
     rua = models.CharField(null=False,max_length=30)
     numero = models.IntegerField(null=False)
@@ -55,9 +55,9 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     telefone = models.CharField(null=False,max_length=30)
     sexo = models.CharField(max_length=1, choices=SEXO_CHOICES, blank=False, null=True)
     tipo = models.CharField(max_length=1, choices=TIPO_CHOICES, blank=False, null=False,default='L')
-    ativado = models.BooleanField(_('active'), default=True, help_text=_('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
-    validado = models.BooleanField(_('trusty'), default=False, help_text=_('Designates whether this user has confirmed his account.'))
-    is_staff = models.BooleanField(_('staff status'), default=False, help_text=_('Designates whether the user can log into this admin site.'))
+    ativado = models.BooleanField(_('active'), default=True, help_text=_('Designa se este usuário deveria ser tratado como ativo. Desmarca ele ao invés de excluir contas.'))
+    validado = models.BooleanField(_('trusty'), default=False, help_text=_('Designa se este usuário confirmou a sua conta.'))
+    is_staff = models.BooleanField(_('staff status'), default=False, help_text=_('Designa se o usuário pode logar nesta área de administrador.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'nome','rua','numero','bairro','cidade','pais','cep']
