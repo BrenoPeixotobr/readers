@@ -11,11 +11,9 @@ class Usuario(models.Model):
        ("L", "Leitor"),
        ("D", "Dono"),
        ("B", "Bibliotecário")
-
     )
 
-    cpf = models.CharField(primary_key=True,max_length=16)
-    nome = models.CharField(max_length=30)
+    nome = models.CharField(primary_key=True,max_length=30)
     rua = models.CharField(null=False,max_length=30)
     numero = models.IntegerField(null=False)
     complemento = models.CharField(null=False,max_length=30)
