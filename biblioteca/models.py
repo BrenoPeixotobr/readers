@@ -11,6 +11,7 @@ class Biblioteca(models.Model):
     complemento = models.CharField(null=False,max_length=30)
     bairro = models.CharField(null=False,max_length=30)
     cidade = models.CharField(null=False,max_length=30)
+    estado = models.CharField(null=False,max_length=30,default="Minas Gerais")
     pais = models.CharField(null=False,max_length=30)
     cep = models.CharField(null=False,max_length=30)
     email= models.CharField(null=False,max_length=30)

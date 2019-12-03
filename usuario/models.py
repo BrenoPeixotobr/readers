@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+from django.contrib.auth.models import User
 
 class Usuario(models.Model):
     SEXO_CHOICES = (
@@ -13,6 +15,7 @@ class Usuario(models.Model):
        ("B", "Bibliotecário")
     )
 
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=("User"))
     CPF = models.CharField(primary_key=True,max_length=30,default="teste")
     nome = models.CharField(max_length=30)
     rua = models.CharField(null=False,max_length=30)
