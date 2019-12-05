@@ -1,0 +1,24 @@
+{% load static %}
+{% load bootstrap %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(242, 242, 242)">
+            <a class="navbar-brand" href="">READERS</a>
+            <h3 style="margin-left: auto; margin-right: auto;">Login</h3>
+         </div>
+         <h1 style="margin: 20 0 20 0;">Efetue seu login abaixo</h1>
+        <form action="." method="post">
+            {% csrf_token %}
+            {{ form|bootstrap}}
+            <input class="btn btn-primary" type="submit" value="Login">
+        </form>
+    </div>
+</body>
+{% endblock %}

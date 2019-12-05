@@ -1,5 +1,4 @@
 {% load static %}
-{% load bootstrap %}
 {% block content %}
 
 <head>
@@ -17,11 +16,11 @@
         <div class="nav-item" style="float:left">
             <a style="text-align: center" class="nav-link" href="../../categoria/">MENU</a>
         </div>
-        <a style="color:red; text-align: center;" class="navbar-link" href="../../logout/">Logout</a>
+        <a style="color:red; text-align: center;" class="navbar-link" href="../logout/">Logout</a>
     </nav>
-    <h2>Insira os dados biblioteca abaixo</h2>
+    <h2>Insira o biblioteca abaixo</h2>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form|bootstrap}}
+        {{ form.as_p }}
         <button type="submit"  style="background-color:green; color:honeydew" class="save btn btn-default">Confirmar</button>
     </form>
 </div>

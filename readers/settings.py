@@ -41,12 +41,12 @@ INSTALLED_APPS = [
     'livbib','autor',
     # Any apps which will override adminlte's templates (i.e. your apps)
 
+    #bootstrap
+    'bootstrapform',
     # The general purpose templates
     'django_adminlte',
-
     # Optional: Skin for the admin interface
     'django_adminlte_theme',
-
     # Any apps which need to have their templates overridden by adminlte
     'django.contrib.admin',
 ]
@@ -140,3 +140,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '../biblioteca/inserir'
+LOGOUT_REDIRECT_URL = '../login/'
