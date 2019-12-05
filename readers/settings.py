@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuario','biblioteca','livro',
     'livbib','autor',
+    'account',
     # Any apps which will override adminlte's templates (i.e. your apps)
 
     #bootstrap
@@ -141,5 +142,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '../biblioteca/inserir'
+LOGIN_REDIRECT_URL = '../usuario/busca'
 LOGOUT_REDIRECT_URL = '../login/'

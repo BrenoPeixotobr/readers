@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 class Usuario(models.Model):
     SEXO_CHOICES = (
@@ -34,5 +36,15 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nome
 
+    '''
+    @receiver(post_save, sender=User)
+    def criar_usuario(sender, instance, created, **kwargs):
+        if created:
+            Usuario.objects.create(user=instance)
 
+    @receiver(post_save, sender=User)
+    def salvar_usuario(sender, instance, **kwargs):
+        instance.usuario.save()
+
+'''
 # Create your models here.
