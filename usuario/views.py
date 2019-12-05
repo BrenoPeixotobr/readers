@@ -51,10 +51,9 @@ def busca_livro(request):
     if request.user.is_authenticated:
         if request.method == "POST":
             form = BuscaLivro(request.POST)
-            if form.is_valid():
-                post = form.save(commit=False)
-                post.save()
-                return HttpResponseRedirect('../lista/')
+            nome_livro=form['livro'].value()
+            return HttpResponseRedirect('../../livbib/lista_cidade_user/'+str(nome_livro))
+
         else:
             form = BuscaLivro()
             return render(request, "usuario/busca.html",{'form': form})
