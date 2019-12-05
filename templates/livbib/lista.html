@@ -22,7 +22,7 @@ table#t01 {
 <div class="container">
 	<nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(242, 242, 242)">
 		<a class="navbar-brand" href="../../produto/">READERS</a>
-		<h3 style="margin-left: auto; margin-right: auto;">Lista de bibliotecas</h3>
+		<h3 style="margin-left: auto; margin-right: auto;">Lista de Livros da Biblioteca</h3>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
     </button>
@@ -35,13 +35,17 @@ table#t01 {
   <div>
   <table style="width:100%">
     <tr BGCOLOR=SlateBlue>
-      <th>Nome</th>
-      <th>usuario</th>
+      <th>Biblioteca</th>
+      <th>Livro</th>
+      <th>Quantidade</th>
+      <th>Quantidade Total</th>
     </tr>
-    {% for c in biblioteca %}
+    {% for c in liv %}
     <tr>
-      <td>{{c.nome}}</td>
-      <td>{{ c.usuario}}</td>
+      <td>{{c.biblioteca}}</td>
+      <td>{{c.livro}}</td>
+      <td>{{c.quantidade}}</td>
+      <td>{{c.quantidadeTotal}}</td>
     </tr>
     {% endfor %}
   </table>
@@ -52,4 +56,4 @@ table#t01 {
 	</div>
 
 </div>
-<script>src = "{static 'biblioteca/js/scripts.js' %}"</script>
+<script>src = "{static 'livbib/js/scripts.js' %}"</script>

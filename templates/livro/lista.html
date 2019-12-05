@@ -35,13 +35,13 @@ table#t01 {
   <div>
   <table style="width:100%">
     <tr BGCOLOR=SlateBlue>
-      <th>Nome</th>
-      <th>usuario</th>
+      <th>Titulo</th>
+      <th>ISBN</th>
     </tr>
-    {% for c in biblioteca %}
+    {% for c in livro %}
     <tr>
-      <td>{{c.nome}}</td>
-      <td>{{ c.usuario}}</td>
+      <td>{{c.titulo}}</td>
+      <td>{{ c.isbn}}</td>
     </tr>
     {% endfor %}
   </table>

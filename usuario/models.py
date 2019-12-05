@@ -36,6 +36,7 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nome
 
+
     '''
     @receiver(post_save, sender=User)
     def criar_usuario(sender, instance, created, **kwargs):

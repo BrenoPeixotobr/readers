@@ -36,12 +36,12 @@ table#t01 {
   <table style="width:100%">
     <tr BGCOLOR=SlateBlue>
       <th>Nome</th>
-      <th>usuario</th>
+      <th>Autor</th>
     </tr>
-    {% for c in biblioteca %}
+    {% for c in autor %}
     <tr>
       <td>{{c.nome}}</td>
-      <td>{{ c.usuario}}</td>
+      <td>{{ c.dataNascimento}}</td>
     </tr>
     {% endfor %}
   </table>

@@ -14,6 +14,8 @@ def post_list(request):
 
 def post_list(request):
     if request.user.is_authenticated:
+        user=request.user.id
+        print(user)
         return HttpResponseRedirect('../inserir/')
     else:
         return HttpResponseRedirect('../../login/')
@@ -27,8 +29,9 @@ def insere_usuario(request):
                 post.save()
                 return HttpResponseRedirect('../lista/')
         else:
-            form = PostUsuario()
-            return render(request, "usuario/inserir.html",{'form': form})
+            user_id=request.user.id
+            form = PostUsuario(initial={'user': user_id})
+            return render(request, "usuario/inserir.html",{'form': form, 'user':user_id})
     else:
         return HttpResponseRedirect('../../login/')
 

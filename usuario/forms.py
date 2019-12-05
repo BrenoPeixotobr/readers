@@ -29,6 +29,7 @@ class PostUsuario(forms.ModelForm):
     telefone = forms.CharField(label='Telefone')
     sexo = forms.ChoiceField(choices=SEXO_CHOICES,label='Orientação Sexual')
     tipo = forms.ChoiceField(choices=TIPO_CHOICES,label='Função')
+    user = forms.CharField(label='Usuario',widget=forms.TextInput(attrs={'readonly':'readonly'}))
     class Meta:
         model = Usuario
         fields = ('cpf','nome', 'rua','numero','complemento','bairro','cidade','estado','pais','cep','email','telefone','sexo','tipo','user')
