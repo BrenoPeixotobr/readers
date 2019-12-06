@@ -16,7 +16,7 @@ def post_list(request):
     if request.user.is_authenticated:
         user=request.user.id
         print(user)
-        return HttpResponseRedirect('../inserir/')
+        return render(request, "usuario/teste.html")#return HttpResponseRedirect('../inserir/')
     else:
         return HttpResponseRedirect('../../login/')
 

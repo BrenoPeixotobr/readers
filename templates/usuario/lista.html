@@ -1,40 +1,9 @@
-{% load static %}
-<style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-  text-align: left;
-}
-table#t01 {
-  width: 100%;
-  background-color: #f1f1c1;
-}
-</style>
+{% extends '../base.html' %}
 
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="{%static 'biblioteca/css/styles.css' %}"/>
-</head>
-
-<div class="container">
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(242, 242, 242)">
-		<a class="navbar-brand" href="../../produto/">READERS</a>
-		<h3 style="margin-left: auto; margin-right: auto;">Lista de usuarios</h3>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="nav-item" style="float:left">
-      <a style="text-align: center" class="nav-link" href="../../produto/">MENU</a>
-  </div>
-  <a style="color:red; text-align: center;" class="navbar-link" href="../../logout/">Logout</a>
-	</nav>
-
+{% block content %}
   <div>
   <table style="width:100%">
-    <tr BGCOLOR=SlateBlue>
+    <tr  class="cabecalho_tabela">
       <th>Nome</th>
       <th>usuario</th>
       <th>CPF</th>
@@ -49,9 +18,4 @@ table#t01 {
   </table>
   </div>
 
-  <div>
-		<h5><a href="../">Voltar</a></h5>
-	</div>
-
-</div>
-<script>src = "{static 'usuario/js/scripts.js' %}"</script>
+{% endblock %}

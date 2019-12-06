@@ -1,0 +1,35 @@
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+.cabecalho_tabela {background-color: #BDB76B;}
+table#t01 {
+  width: 100%;
+  background-color: #f1f1c1;
+}
+</style>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(242, 242, 242)"">
+        <a class="navbar-brand" href="..">READERS</a>
+        <h3 style="margin-left: auto; margin-right: auto;">Novo livro</h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="nav-item" style="float:left">
+            <a style="text-align: center" class="nav-link" href="../../categoria/">MENU</a>
+        </div>
+        <a style="color:red; text-align: center;" class="navbar-link" href="../../logout/">Logout</a>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</div>
