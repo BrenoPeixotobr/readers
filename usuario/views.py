@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Usuario
 from  .forms import PostUsuario, BuscaLivro
+from django.shortcuts import render_to_response
 '''
 def post_list(request):
     if request.user.is_authenticated:
@@ -56,7 +57,7 @@ def busca_livro(request):
 
         else:
             form = BuscaLivro()
-            return render(request, "usuario/busca.html",{'form': form})
+            return render_to_response(request, "usuario/busca.html",{'form': form})
     else:
         return HttpResponseRedirect('../../login/')
 

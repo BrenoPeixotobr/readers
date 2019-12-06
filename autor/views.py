@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Autor
 from  .forms import PostAutor
+from django.shortcuts import render_to_response
 '''
 def post_list(request):
     if request.user.is_authenticated:

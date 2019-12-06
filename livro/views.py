@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Livro
 from  .forms import PostLivro
+from django.shortcuts import render_to_response
 '''
 def post_list(request):
     if request.user.is_authenticated:
@@ -21,6 +22,8 @@ def insere_livro(request):
                 post = form.save(commit=False)
                 post.save()
                 return HttpResponseRedirect('../lista/')
+            else:
+                return render_to_response("erro_form.html",{'form': form})
         else:
             form = PostLivro()
             return render(request, "livro/inserir.html",{'form': form})

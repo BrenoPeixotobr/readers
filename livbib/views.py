@@ -9,6 +9,7 @@ from biblioteca.models import Biblioteca
 from usuario.models import Usuario
 from livro.models import Livro
 from django.db.models import Q
+from django.shortcuts import render_to_response
 '''
 def post_list(request):
     if request.user.is_authenticated:
