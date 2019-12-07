@@ -27,6 +27,8 @@ def insere_livbib(request):
                 post = form.save(commit=False)
                 post.save()
                 return HttpResponseRedirect('../lista/')
+            else:
+                return render_to_response("erro_form.html",{'form': form})
         else:
             form = PostLivBib()
             bib_user=Usuario.objects.filter(user=request.user)

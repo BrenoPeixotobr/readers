@@ -29,6 +29,8 @@ def insere_usuario(request):
                 post = form.save(commit=False)
                 post.save()
                 return HttpResponseRedirect('../lista/')
+            else:
+                return render_to_response("erro_form.html",{'form': form})
         else:
             user_id=request.user.id
             form = PostUsuario(initial={'user': user_id})
@@ -54,11 +56,19 @@ def busca_livro(request):
             form = BuscaLivro(request.POST)
             nome_livro=form['livro'].value()
             return HttpResponseRedirect('../../livbib/lista_cidade_user/'+str(nome_livro))
-
         else:
             form = BuscaLivro()
-            return render_to_response(request, "usuario/busca.html",{'form': form})
+            return render(request, "usuario/busca.html",{'form': form})
     else:
         return HttpResponseRedirect('../../login/')
+
+def primeiro_login(request):
+    if request.user.is_authenticated:
+        user_logado=Usuario.objects.filter(user=request.user).exist()
+        print(user_logado)
+        return HttpResponseRedirect('../teste/')
+
+    else:
+        return HttpResponseRedirect('../login/')
 
 # Create your views here.

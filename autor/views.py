@@ -22,6 +22,8 @@ def insere_autor(request):
                 post = form.save(commit=False)
                 post.save()
                 return HttpResponseRedirect('../lista/')
+            else:
+                return render_to_response("erro_form.html",{'form': form})
         else:
             form = PostAutor()
             return render(request, "autor/inserir.html",{'form': form})
