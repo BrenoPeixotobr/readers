@@ -33,8 +33,8 @@ def insere_usuario(request):
                 return render_to_response("erro_form.html",{'form': form})
         else:
             user_id=request.user.id
-            form = PostUsuario(initial={'user': user_id})
-            return render(request, "usuario/inserir.html",{'form': form, 'user':user_id})
+            form = PostUsuario(initial={'user': user_id,'tipo':"Leitor"})
+            return render(request, "usuario/inserir.html",{'form': form})
     else:
         return HttpResponseRedirect('../../login/')
 
@@ -75,9 +75,10 @@ def primeiro_login(request):
                 else:
                     return render_to_response("erro_form.html",{'form': form})
             else:
+                nome_usuario=request.user
                 user_id=request.user.id
                 form = PrimeiroLogin(initial={'user': user_id,'tipo':"Leitor"})
-                return render(request, "usuario/inserir.html",{'form': form, 'user':user_id,'tipo':"Leitor"})
+                return render(request, "usuario/primeiro.html",{'form': form,'nome_usuario': nome_usuario})
 
         else:
             return HttpResponseRedirect('../busca/')
