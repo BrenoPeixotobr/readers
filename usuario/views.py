@@ -3,8 +3,9 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Usuario
-from  .forms import PostUsuario, BuscaLivro
+from  .forms import PostUsuario, BuscaLivro, PrimeiroLogin
 from django.shortcuts import render_to_response
+from django.db.models import Q
 '''
 def post_list(request):
     if request.user.is_authenticated:
@@ -16,7 +17,6 @@ def post_list(request):
 def post_list(request):
     if request.user.is_authenticated:
         user=request.user.id
-        print(user)
         return render(request, "usuario/teste.html")#return HttpResponseRedirect('../inserir/')
     else:
         return HttpResponseRedirect('../../login/')
@@ -64,9 +64,23 @@ def busca_livro(request):
 
 def primeiro_login(request):
     if request.user.is_authenticated:
-        user_logado=Usuario.objects.filter(user=request.user).exist()
-        print(user_logado)
-        return HttpResponseRedirect('../teste/')
+        user_logado=Usuario.objects.filter(user=request.user.id)
+        if not user_logado:
+            if request.method == "POST":
+                form = PrimeiroLogin(request.POST)
+                if form.is_valid():
+                    post = form.save(commit=False)
+                    post.save()
+                    return HttpResponseRedirect('../lista/')
+                else:
+                    return render_to_response("erro_form.html",{'form': form})
+            else:
+                user_id=request.user.id
+                form = PrimeiroLogin(initial={'user': user_id,'tipo':"Leitor"})
+                return render(request, "usuario/inserir.html",{'form': form, 'user':user_id,'tipo':"Leitor"})
+
+        else:
+            return HttpResponseRedirect('../busca/')
 
     else:
         return HttpResponseRedirect('../login/')

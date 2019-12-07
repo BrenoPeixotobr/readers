@@ -142,5 +142,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '../usuario/busca'
+LOGIN_REDIRECT_URL = '../usuario/primeiro'
 LOGOUT_REDIRECT_URL = '../login/'

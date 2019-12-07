@@ -1,0 +1,10 @@
+{% extends '../base.html' %}
+{% load bootstrap %}
+{% block content %}
+<h2>Insira os dados usuario abaixo</h2>
+<form method="POST" class="post-form">{% csrf_token %}
+    {{ form|bootstrap}}
+    <button type="submit"  style="background-color:green; color:honeydew" class="save btn btn-default">Confirmar</button>
+</form>
+</div>
+{% endblock %}
