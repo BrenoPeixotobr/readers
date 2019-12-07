@@ -1,3 +1,0 @@
-Pessoal todas os arquivos html recebem as configurações do arquivo base.html
-inclusive as configurações de css.
-Execeto login e account
