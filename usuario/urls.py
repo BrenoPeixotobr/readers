@@ -10,5 +10,6 @@ urlpatterns = [
     path('lista/', views.lista_usuario, name='lista_usuario'),
     path('busca/', views.busca_livro, name='busca_livro'),
     path('primeiro/', views.primeiro_login, name='primeiro_login'),
+    path('atualiza/', views.atualiza_dados, name='atualiza_dados'),
 
 ]

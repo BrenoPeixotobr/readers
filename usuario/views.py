@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_list_or_404, get_object_or_404
 from django import forms
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -82,6 +83,25 @@ def primeiro_login(request):
 
         else:
             return HttpResponseRedirect('../busca/')
+
+    else:
+        return HttpResponseRedirect('../login/')
+
+def atualiza_dados(request):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Usuario, user=request.user.id)
+        form = PostUsuario(instance=post)
+        if(request.method == 'POST'):
+            form = PostUsuario(request.POST, instance=post)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.save()
+                return HttpResponseRedirect('../lista/')
+            else:
+                return render_to_response("erro_form.html",{'form': form})
+
+        elif(request.method == 'GET'):
+            return render(request, 'usuario/edit_usuario.html', {'form': form, 'post' : post})
 
     else:
         return HttpResponseRedirect('../login/')
