@@ -34,8 +34,8 @@ class PostUsuario(forms.ModelForm):
         fields = ('CPF','nome', 'rua','numero','complemento','bairro','cidade','estado','pais','cep','email','telefone','sexo','tipo','user')
 
 class BuscaLivro(forms.Form):
-    livro=forms.CharField(label='Nome do Livro')
-    autor=forms.CharField(label='Nome do Autor')
+    livro=forms.CharField(label='Titulo', required=False)
+    autor=forms.CharField(label='Nome do Autor', required=False)
 
 class PrimeiroLogin(forms.ModelForm):
     SEXO_CHOICES = (

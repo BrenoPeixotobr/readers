@@ -100,7 +100,7 @@ def insere_bib(request,biblioteca):
         else:
             form = PostLivBib()
             bib_user=Usuario.objects.filter(user=request.user)
-            form.fields["biblioteca"]=forms.ModelChoiceField(queryset=Biblioteca.objects.filter(Q(usuario=bib_user[0]) &Q (nome=biblioteca)),initial=biblioteca)
+            form.fields["biblioteca"]=forms.ModelChoiceField(queryset=Biblioteca.objects.filter(Q(usuario=bib_user[0]) & Q(nome=biblioteca)),initial=biblioteca)
             #form.fields["biblioteca"]=biblioteca
             return render(request, "livbib/inserir.html",{'form': form})
     else:

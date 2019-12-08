@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 class Autor(models.Model):
     nome = models.CharField(primary_key=True,max_length=50)
