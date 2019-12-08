@@ -60,12 +60,30 @@ def lista_cidade_biblioteca(request,livro):
         #id do livro pesquisado
         id_livro=Livro.objects.filter(titulo=livro)
         lista_biblioteca=Biblioteca.objects.filter(cidade=cidade)
-        print(lista_biblioteca[0])
-        liv = LivBib.objects.filter(biblioteca=lista_biblioteca[0])
-        contexto = {
-            'liv': liv
-            }
-        return render(request, "livbib/lista.html", contexto)
+        print(lista_biblioteca[1])
+        liv = LivBib.objects.filter(Q(biblioteca__in=lista_biblioteca) & Q(livro=id_livro[0]))
+        if liv:
+            contexto = {
+                'liv': liv
+                }
+            return render(request, "livbib/lista.html", contexto)
+        else:
+            mensagem_de_erro="Existe esse livro na sua cidade!"
+            contexto = {
+                'mensagem_de_erro': mensagem_de_erro
+                }
+            return render(request, "livbib/erros.html", contexto)
     else:
         return HttpResponseRedirect('../../login/')
 # Create your views here.
+
+def lista_livro(request,livro):
+    if request.user.is_authenticated:
+        id_livro=Livro.objects.filter(titulo=livro)
+        liv = LivBib.objects.filter(livro=id_livro[0])
+        contexto = {
+            'liv': liv
+                    }
+        return render(request, "livbib/lista.html", contexto)
+    else:
+        return HttpResponseRedirect('../../login/')

@@ -10,7 +10,7 @@
     </tr>
     {% for c in livro %}
     <tr>
-      <td>{{c.titulo}}</td>
+      <td><a href="../../livbib/lista_livro/{{c.titulo}}">{{c.titulo}}</a></td>
       <td>{{ c.isbn}}</td>
     </tr>
     {% endfor %}
