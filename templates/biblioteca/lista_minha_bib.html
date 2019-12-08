@@ -1,0 +1,18 @@
+{% extends '../base.html' %}
+{% load bootstrap %}
+{% block content %}
+<div>
+<table style="width:100%">
+  <tr class="cabecalho_tabela">
+    <th>Nome</th>
+    <th>cidade</th>
+  </tr>
+  {% for c in biblioteca %}
+  <tr>
+    <td><a href="../../livbib/inserir_bib/{{c.nome}}">{{c.nome}}</a></td>
+    <td>{{ c.cidade}}</td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% endblock %}

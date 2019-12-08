@@ -70,4 +70,22 @@ def atualiza(request):
 
     else:
         return HttpResponseRedirect('../login/')
+
+def minhas_biblioteca(request):
+    if request.user.is_authenticated:
+        bib_user=Usuario.objects.filter(user=request.user)
+        biblioteca = Biblioteca.objects.filter(usuario__in=bib_user)
+        if biblioteca:
+            contexto = {
+                'biblioteca': biblioteca
+                }
+            return render(request, "biblioteca/lista_minha_bib.html", contexto)
+        else:
+            mensagem_de_erro="Não biblioteca para esse usuario"
+            contexto = {
+                'mensagem_de_erro': mensagem_de_erro
+                }
+            return render(request, "biblioteca/erros.html", contexto)
+    else:
+        return HttpResponseRedirect('../../login/')
 # Create your views here.
