@@ -18,7 +18,7 @@ class Usuario(models.Model):
     )
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=("User"))
-    CPF = models.CharField(primary_key=True,max_length=30,default="teste")
+    CPF = models.CharField(primary_key=True,max_length=30)
     nome = models.CharField(max_length=30)
     rua = models.CharField(null=False,max_length=30)
     numero = models.IntegerField(null=False)

@@ -14,6 +14,7 @@ class PostBiblioteca(forms.ModelForm):
     cep = forms.CharField(label='CEP')
     email= forms.CharField(label='Email')
     telefone = forms.CharField(label='Telefone')
+    #usuario=forms.IntegerField(label='Usuario',widget=forms.TextInput(attrs={'readonly':'readonly'}))
 
     class Meta:
         model = Biblioteca

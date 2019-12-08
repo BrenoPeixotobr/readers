@@ -7,12 +7,14 @@
       <th>Nome</th>
       <th>usuario</th>
       <th>CPF</th>
+      <th>Tipo</th>
     </tr>
     {% for c in usuario %}
     <tr>
       <td>{{c.nome}}</td>
       <td>{{c.user}}</td>
       <td>{{c.CPF}}</td>
+      <td>{{c.tipo}}</td>
     </tr>
     {% endfor %}
   </table>

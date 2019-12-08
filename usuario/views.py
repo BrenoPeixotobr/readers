@@ -31,7 +31,7 @@ def insere_usuario(request):
                 post.save()
                 return HttpResponseRedirect('../lista/')
             else:
-                return render_to_response("erro_form.html",{'form': form})
+                return render_to_response("erros/erro_form.html",{'form': form})
         else:
             user_id=request.user.id
             form = PostUsuario(initial={'user': user_id,'tipo':"Leitor"})
@@ -74,11 +74,11 @@ def primeiro_login(request):
                     post.save()
                     return HttpResponseRedirect('../lista/')
                 else:
-                    return render_to_response("erro_form.html",{'form': form})
+                    return render_to_response("erros/erro_form.html",{'form': form})
             else:
                 nome_usuario=request.user
                 user_id=request.user.id
-                form = PrimeiroLogin(initial={'user': user_id,'tipo':"Leitor"})
+                form = PrimeiroLogin(initial={'user': user_id,'tipo':"L"})
                 return render(request, "usuario/primeiro.html",{'form': form,'nome_usuario': nome_usuario})
 
         else:
@@ -98,7 +98,7 @@ def atualiza_dados(request):
                 post.save()
                 return HttpResponseRedirect('../lista/')
             else:
-                return render_to_response("erro_form.html",{'form': form})
+                return render_to_response("erros/erro_form.html",{'form': form})
 
         elif(request.method == 'GET'):
             return render(request, 'usuario/edit_usuario.html', {'form': form, 'post' : post})

@@ -23,7 +23,7 @@ def insere_livro(request):
                 post.save()
                 return HttpResponseRedirect('../lista/')
             else:
-                return render_to_response("erro_form.html",{'form': form})
+                return render_to_response("erros/erro_form.html",{'form': form})
         else:
             form = PostLivro()
             return render(request, "livro/inserir.html",{'form': form})
