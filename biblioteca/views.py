@@ -6,6 +6,8 @@ from .models import Biblioteca
 from  .forms import PostBiblioteca
 from django.shortcuts import render_to_response
 from usuario.models import Usuario
+from django.shortcuts import get_list_or_404, get_object_or_404
+from django.db.models import Q
 '''
 def post_list(request):
     if request.user.is_authenticated:
@@ -47,26 +49,27 @@ def lista_biblioteca(request):
 
 def atualiza(request):
     if request.user.is_authenticated:
-        post = get_object_or_404(Biblioteca, user=request.biblioteca.id)
+        usuario = Usuario.objects.filter(user=request.user.id)[0]
+        post = get_object_or_404(Biblioteca, usuario=usuario)
         form = PostBiblioteca(instance=post)
         if(request.method == 'POST'):
             form = PostBiblioteca(request.POST, instance=post)
-            Biblioteca.objects.filter(userio=request.user.id).update(nome=form['nome'].value())
-            Biblioteca.objects.filter(userio=request.user.id).update(rua=form['rua'].value())
-            Biblioteca.objects.filter(userio=request.user.id).update(numero=form['numero'].value())
-            Biblioteca.objects.filter(userio=request.user.id).update(complemento=form['complemento'].value())
-            Biblioteca.objects.filter(userio=request.user.id).update(bairro=form['bairro'].value())
-            Biblioteca.objects.filter(userio=request.user.id).update(cidade=form['cidade'].value())
-            Biblioteca.objects.filter(userio=request.user.id).update(estado=form['estado'].value())
-            Biblioteca.objects.filter(userio=request.user.id).update(cep=form['cep'].value())
-            Biblioteca.objects.filter(userio=request.user.id).update(email=form['email'].value())
-            Biblioteca.objects.filter(userio=request.user.id).update(telefone=form['telefone'].value())
-            #Biblioteca.objects.filter(userio=request.user.id).update(Usuario.objects.filter(user=request.user)) 
+            Biblioteca.objects.filter(usuario=usuario).update(nome=form['nome'].value())
+            Biblioteca.objects.filter(usuario=usuario).update(rua=form['rua'].value())
+            Biblioteca.objects.filter(usuario=usuario).update(numero=form['numero'].value())
+            Biblioteca.objects.filter(usuario=usuario).update(complemento=form['complemento'].value())
+            Biblioteca.objects.filter(usuario=usuario).update(bairro=form['bairro'].value())
+            Biblioteca.objects.filter(usuario=usuario).update(cidade=form['cidade'].value())
+            Biblioteca.objects.filter(usuario=usuario).update(estado=form['estado'].value())
+            Biblioteca.objects.filter(usuario=usuario).update(cep=form['cep'].value())
+            Biblioteca.objects.filter(usuario=usuario).update(email=form['email'].value())
+            Biblioteca.objects.filter(usuario=usuario).update(telefone=form['telefone'].value())
+            #Biblioteca.objects.filter(usuario=request.user.id).update(Usuario.objects.filter(user=request.user)) 
             return HttpResponseRedirect('../lista/')
 
 
         elif(request.method == 'GET'):
-            return render(request, 'biblioteca/edit_biblioteca.html', {'form': form, 'post' : post})
+            return render(request, 'biblioteca/edit.html', {'form': form, 'post' : post})
 
     else:
         return HttpResponseRedirect('../login/')

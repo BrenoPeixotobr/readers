@@ -6,11 +6,14 @@
   <tr class="cabecalho_tabela">
     <th>Nome</th>
     <th>cidade</th>
+    <th>Editar</th>
   </tr>
   {% for c in biblioteca %}
   <tr>
     <td><a href="../../livbib/inserir_bib/{{c.nome}}">{{c.nome}}</a></td>
     <td>{{ c.cidade}}</td>
+    <td><a href="/biblioteca/atualiza/">Editar</a></td>
+
   </tr>
   {% endfor %}
 </table>
