@@ -50,7 +50,7 @@ class PrimeiroLogin(forms.ModelForm):
        ("B", "Bibliotecário")
     )
 
-    cpf=forms.CharField(label='CPF')
+    CPF=forms.CharField(label='CPF')
     nome=forms.CharField(label='Nome')
     rua = forms.CharField(label='Rua')
     numero = forms.IntegerField(label='Número')
@@ -67,4 +67,4 @@ class PrimeiroLogin(forms.ModelForm):
     user = forms.CharField(label='Usuario',widget=forms.TextInput(attrs={'readonly':'readonly'}))
     class Meta:
         model = Usuario
-        fields = ('cpf','nome', 'rua','numero','complemento','bairro','cidade','estado','pais','cep','email','telefone','sexo','tipo','user')
+        fields = ('CPF','nome', 'rua','numero','complemento','bairro','cidade','estado','pais','cep','email','telefone','sexo','tipo','user')

@@ -93,12 +93,20 @@ def atualiza_dados(request):
         form = PostUsuario(instance=post)
         if(request.method == 'POST'):
             form = PostUsuario(request.POST, instance=post)
-            if form.is_valid():
-                post = form.save(commit=False)
-                post.save()
-                return HttpResponseRedirect('../lista/')
-            else:
-                return render_to_response("erros/erro_form.html",{'form': form})
+            Usuario.objects.filter(user=request.user.id).update(CPF=form['CPF'].value())
+            Usuario.objects.filter(user=request.user.id).update(nome=form['nome'].value())
+            Usuario.objects.filter(user=request.user.id).update(rua=form['rua'].value())
+            Usuario.objects.filter(user=request.user.id).update(numero=form['numero'].value())
+            Usuario.objects.filter(user=request.user.id).update(complemento=form['complemento'].value())
+            Usuario.objects.filter(user=request.user.id).update(bairro=form['bairro'].value())
+            Usuario.objects.filter(user=request.user.id).update(cidade=form['cidade'].value())
+            Usuario.objects.filter(user=request.user.id).update(estado=form['estado'].value())
+            Usuario.objects.filter(user=request.user.id).update(cep=form['cep'].value())
+            Usuario.objects.filter(user=request.user.id).update(email=form['email'].value())
+            Usuario.objects.filter(user=request.user.id).update(telefone=form['telefone'].value())
+            Usuario.objects.filter(user=request.user.id).update(sexo=form['sexo'].value())
+            return HttpResponseRedirect('../lista/')
+
 
         elif(request.method == 'GET'):
             return render(request, 'usuario/edit_usuario.html', {'form': form, 'post' : post})
