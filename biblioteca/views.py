@@ -45,6 +45,31 @@ def lista_biblioteca(request):
     else:
         return HttpResponseRedirect('../../login/')
 
+def atualiza(request):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Biblioteca, user=request.biblioteca.id)
+        form = PostBiblioteca(instance=post)
+        if(request.method == 'POST'):
+            form = PostBiblioteca(request.POST, instance=post)
+            Biblioteca.objects.filter(userio=request.user.id).update(nome=form['nome'].value())
+            Biblioteca.objects.filter(userio=request.user.id).update(rua=form['rua'].value())
+            Biblioteca.objects.filter(userio=request.user.id).update(numero=form['numero'].value())
+            Biblioteca.objects.filter(userio=request.user.id).update(complemento=form['complemento'].value())
+            Biblioteca.objects.filter(userio=request.user.id).update(bairro=form['bairro'].value())
+            Biblioteca.objects.filter(userio=request.user.id).update(cidade=form['cidade'].value())
+            Biblioteca.objects.filter(userio=request.user.id).update(estado=form['estado'].value())
+            Biblioteca.objects.filter(userio=request.user.id).update(cep=form['cep'].value())
+            Biblioteca.objects.filter(userio=request.user.id).update(email=form['email'].value())
+            Biblioteca.objects.filter(userio=request.user.id).update(telefone=form['telefone'].value())
+            #Biblioteca.objects.filter(userio=request.user.id).update(Usuario.objects.filter(user=request.user)) 
+            return HttpResponseRedirect('../lista/')
+
+
+        elif(request.method == 'GET'):
+            return render(request, 'biblioteca/edit_biblioteca.html', {'form': form, 'post' : post})
+
+    else:
+        return HttpResponseRedirect('../login/')
 
 def minhas_biblioteca(request):
     if request.user.is_authenticated:
