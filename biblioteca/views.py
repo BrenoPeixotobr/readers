@@ -47,24 +47,24 @@ def lista_biblioteca(request):
     else:
         return HttpResponseRedirect('../../login/')
 
-def atualiza(request):
+def atualiza(request,nome=None):
     if request.user.is_authenticated:
         usuario = Usuario.objects.filter(user=request.user.id)[0]
-        post = get_object_or_404(Biblioteca, usuario=usuario)
+        post = get_object_or_404(Biblioteca.objects.filter(usuario=usuario), nome=nome)
         form = PostBiblioteca(instance=post)
         if(request.method == 'POST'):
             form = PostBiblioteca(request.POST, instance=post)
-            Biblioteca.objects.filter(usuario=usuario).update(nome=form['nome'].value())
-            Biblioteca.objects.filter(usuario=usuario).update(rua=form['rua'].value())
-            Biblioteca.objects.filter(usuario=usuario).update(numero=form['numero'].value())
-            Biblioteca.objects.filter(usuario=usuario).update(complemento=form['complemento'].value())
-            Biblioteca.objects.filter(usuario=usuario).update(bairro=form['bairro'].value())
-            Biblioteca.objects.filter(usuario=usuario).update(cidade=form['cidade'].value())
-            Biblioteca.objects.filter(usuario=usuario).update(estado=form['estado'].value())
-            Biblioteca.objects.filter(usuario=usuario).update(cep=form['cep'].value())
-            Biblioteca.objects.filter(usuario=usuario).update(email=form['email'].value())
-            Biblioteca.objects.filter(usuario=usuario).update(telefone=form['telefone'].value())
-            #Biblioteca.objects.filter(usuario=request.user.id).update(Usuario.objects.filter(user=request.user)) 
+            Biblioteca.objects.filter(Q(usuario=usuario) & Q(nome=nome)).update(nome=form['nome'].value())
+            Biblioteca.objects.filter(Q(usuario=usuario) & Q(nome=nome)).update(rua=form['rua'].value())
+            Biblioteca.objects.filter(Q(usuario=usuario) & Q(nome=nome)).update(numero=form['numero'].value())
+            Biblioteca.objects.filter(Q(usuario=usuario) & Q(nome=nome)).update(complemento=form['complemento'].value())
+            Biblioteca.objects.filter(Q(usuario=usuario) & Q(nome=nome)).update(bairro=form['bairro'].value())
+            Biblioteca.objects.filter(Q(usuario=usuario) & Q(nome=nome)).update(cidade=form['cidade'].value())
+            Biblioteca.objects.filter(Q(usuario=usuario) & Q(nome=nome)).update(estado=form['estado'].value())
+            Biblioteca.objects.filter(Q(usuario=usuario) & Q(nome=nome)).update(cep=form['cep'].value())
+            Biblioteca.objects.filter(Q(usuario=usuario) & Q(nome=nome)).update(email=form['email'].value())
+            Biblioteca.objects.filter(Q(usuario=usuario) & Q(nome=nome)).update(telefone=form['telefone'].value())
+            #Biblioteca.objects.filter(usuario=request.user.id).update(Usuario.objects.filter(user=request.user))
             return HttpResponseRedirect('../lista/')
 
 
@@ -73,6 +73,7 @@ def atualiza(request):
 
     else:
         return HttpResponseRedirect('../login/')
+
 
 def minhas_biblioteca(request):
     if request.user.is_authenticated:

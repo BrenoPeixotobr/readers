@@ -5,7 +5,7 @@
     <div class="container">
         <h2>Editar Dados</h2>
         <div>
-            <form action="." method="POST">
+            <form action="./{{post.nome}}" method="POST">
                 {% csrf_token %}
                 {{ form|bootstrap}}
                 <button type="submit"  style="background-color:green; color:honeydew" class="save btn btn-default">Confirmar</button>
