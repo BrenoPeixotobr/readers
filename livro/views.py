@@ -40,4 +40,22 @@ def lista_livro(request):
         return render(request, "livro/lista.html", contexto)
     else:
         return HttpResponseRedirect('../../login/')
+
+
+def busca_autor(request,autor):
+    if request.user.is_authenticated:
+        livro = Livro.objects.filter(autor=autor)
+        if livro:
+            contexto = {
+                'livro': livro
+                }
+            return render(request, "livro/lista.html", contexto)
+        else:
+            mensagem_de_erro="Não existe livros com esse autor!"
+            contexto = {
+                'mensagem_de_erro': mensagem_de_erro
+                }
+            return render(request, "livro/erros.html", contexto)
+    else:
+        return HttpResponseRedirect('../../login/')
 # Create your views here.

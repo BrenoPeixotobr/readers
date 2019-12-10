@@ -8,3 +8,6 @@ class PostAutor(forms.ModelForm):
     class Meta:
         model = Autor
         fields = ('nome','dataNascimento')
+
+class BuscaAutor(forms.Form):
+    autor=forms.CharField(label='Nome do Autor')

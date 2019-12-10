@@ -6,5 +6,6 @@ from django.urls import path
 urlpatterns = [
     path('inserir/', views.insere_livro, name='insere_livro'),
     path('lista/', views.lista_livro, name='lista_livro'),
+    path('busca_autor/<str:autor>', views.busca_autor, name='busca_autor'),
 
 ]

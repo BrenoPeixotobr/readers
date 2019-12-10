@@ -3,7 +3,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Autor
-from  .forms import PostAutor
+from  .forms import PostAutor, BuscaAutor
 from django.shortcuts import render_to_response
 '''
 def post_list(request):
@@ -41,5 +41,17 @@ def lista_autor(request):
     else:
         return HttpResponseRedirect('../../login/')
 
+
+def busca_autor(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = BuscaAutor(request.POST)
+            nome_Autor=form['autor'].value()
+            return HttpResponseRedirect('../../livro/busca_autor/'+str(nome_Autor))
+        else:
+            form = BuscaAutor()
+            return render(request, "autor/busca.html",{'form': form})
+    else:
+        return HttpResponseRedirect('../../login/')
 
 # Create your views here.
