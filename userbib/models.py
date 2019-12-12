@@ -1,6 +1,6 @@
 from django.db import models
 from biblioteca.models import Biblioteca
-from livro.models import Usuario
+from usuario.models import Usuario
 
 class UserBib(models.Model):
     biblioteca = models.ForeignKey(Biblioteca, on_delete=models.CASCADE)
