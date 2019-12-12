@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuario','biblioteca','livro',
     'livbib','autor','emprestimo',
-    'reserva','item',
+    'reserva','item','userbib',
     'account',
     # Any apps which will override adminlte's templates (i.e. your apps)
 
