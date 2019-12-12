@@ -13,7 +13,7 @@
     <tr>
       <td><a href="../../livbib/lista_livro/{{c.titulo}}">{{c.titulo}}</a></td>
       <td>{{ c.isbn}}</td>
-      <td>{{ c.autor}}</td>
+      <td>{% for autor in c.autor.all %}{{ autor }}<br/>{% endfor %}</td>
     </tr>
     {% endfor %}
   </table>

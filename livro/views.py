@@ -3,6 +3,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Livro
+from autor.models import Autor
 from  .forms import PostLivro
 from django.shortcuts import render_to_response
 '''

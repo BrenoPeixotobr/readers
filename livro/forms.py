@@ -1,6 +1,7 @@
 from django import forms
 
 from .models import Livro
+from autor.models import Autor
 
 class PostLivro(forms.ModelForm):
     isbn =  forms.CharField(label='ISBN')

@@ -4,6 +4,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Usuario
+from django.contrib.auth import login, authenticate
 from  .forms import PostUsuario, BuscaLivro, PrimeiroLogin
 from django.shortcuts import render_to_response
 from django.db.models import Q
@@ -17,7 +18,10 @@ def post_list(request):
 
 def post_list(request):
     if request.user.is_authenticated:
-        user=request.user.id
+        #user=request.user.id
+        user = authenticate(username='teste', password='zet.12345')
+        if user:
+            print(user)
         return render(request, "usuario/teste.html")#return HttpResponseRedirect('../inserir/')
     else:
         return HttpResponseRedirect('../../login/')
