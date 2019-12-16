@@ -23,12 +23,20 @@ def insere_livbib(request):
     if request.user.is_authenticated:
         if request.method == "POST":
             form = PostLivBib(request.POST)
-            if form.is_valid():
-                post = form.save(commit=False)
-                post.save()
-                return HttpResponseRedirect('../lista/')
+            existe_livro=LivBib.objects.filter(Q(biblioteca=form['biblioteca'].value()) & Q(livro=form['livro'].value()))
+            if not existe_livro:
+                if form.is_valid():
+                    post = form.save(commit=False)
+                    post.save()
+                    return HttpResponseRedirect('../lista/')
+                else:
+                    return render_to_response("erros/erro_form.html",{'form': form})
             else:
-                return render_to_response("erros/erro_form.html",{'form': form})
+                mensagem_de_erro="Livro já cadastrado na sua biblioteca!"
+                contexto = {
+                    'mensagem_de_erro': mensagem_de_erro
+                    }
+                return render(request, "livbib/erros.html", contexto)
         else:
             form = PostLivBib()
             bib_user=Usuario.objects.filter(user=request.user)
@@ -38,9 +46,9 @@ def insere_livbib(request):
         return HttpResponseRedirect('../../login/')
 
 
-def lista_livbib(request):
+def lista_livbib(request,nome):
     if request.user.is_authenticated:
-        liv = LivBib.objects.all()
+        liv = LivBib.objects.filter(biblioteca=nome)
 
         contexto = {
             'liv': liv
@@ -65,7 +73,7 @@ def lista_cidade_biblioteca(request,livro):
             contexto = {
                 'liv': liv
                 }
-            return render(request, "livbib/lista.html", contexto)
+            return render(request, "livbib/lista_livro_cidade.html", contexto)
         else:
             mensagem_de_erro="Não existe esse livro na sua cidade!"
             contexto = {
@@ -113,5 +121,26 @@ def lista_livros_biblioteca(request,nome):
             'liv': liv
             }
         return render(request, "livbib/lista.html", contexto)
+    else:
+        return HttpResponseRedirect('../../login/')
+
+def lista_livros_biblioteca_leitor(request,nome):
+    if request.user.is_authenticated:
+        liv = LivBib.objects.filter(biblioteca=nome)
+        contexto = {
+            'liv': liv
+            }
+        return render(request, "livbib/lista_reserva.html", contexto)
+    else:
+        return HttpResponseRedirect('../../login/')
+
+def lista_livro_leitor(request,livro):
+    if request.user.is_authenticated:
+        id_livro=Livro.objects.filter(titulo=livro)
+        liv = LivBib.objects.filter(livro=id_livro[0])
+        contexto = {
+            'liv': liv
+                    }
+        return render(request, "livbib/lista_reserva.html", contexto)
     else:
         return HttpResponseRedirect('../../login/')

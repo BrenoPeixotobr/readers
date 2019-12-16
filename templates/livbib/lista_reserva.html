@@ -1,0 +1,21 @@
+{% extends '../base.html' %}
+{% load bootstrap %}
+{% block content %}
+<div>
+<table style="width:100%">
+  <tr  class="cabecalho_tabela">
+    <th>Biblioteca</th>
+    <th>Livro</th>
+    <th>Reservar Livro</th>
+  </tr>
+  {% for c in liv %}
+  <tr>
+    <td>{{c.biblioteca}}</td>
+    <td>{{c.livro}}</td>
+    <td><a href="../../item/inserir/{{c.idLivBib}}">Reservar</a></td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+
+{% endblock %}

@@ -7,12 +7,18 @@
     <th>Nome</th>
     <th>cidade</th>
     <th>Editar</th>
+    <th>Listar Livros</th>
+    <th>Novos Exemplares</th>
+    <th>Novos Livros</th>
   </tr>
   {% for c in biblioteca %}
   <tr>
     <td><a href="../../livbib/lista_livros_biblioteca/{{c.nome}}">{{c.nome}}</a></td>
     <td>{{ c.cidade}}</td>
     <td><a href="../../biblioteca/atualiza/{{c.nome}}">Editar</a></td>
+    <td><a href="../../item/lista_nome/{{c.nome}}">Livros</a></td>
+    <td><a href="../../livbib/lista/{{c.nome}}">Novos Exemplares</a></td>
+    <td><a href="../../livbib/inserir">Novos Livros</a></td>
 
   </tr>
   {% endfor %}

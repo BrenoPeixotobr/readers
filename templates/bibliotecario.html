@@ -89,19 +89,21 @@ h2, h3, h1{
             </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn">Alterar Dados</button>
+        <button class="dropbtn">Biblioteca</button>
           <div class="dropdown-content">
-              <a href="../../biblioteca/lista">Atualizar Cadastro</a>
-              <a href="../../livbib/inserir">Inserir Livro</a>
-              <a href="#">Excluir Livros</a>
+              <a href="../../biblioteca/lista">Listar Todas</a>
+              <a href="../../biblioteca/inserir">Cadastrar</a>
+              <a href="#">Buscar</a>
+              <a href="../../biblioteca/minhas_biblioteca/">Gerenciar</a>
             </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn">Bibliotecario</button>
+        <button class="dropbtn">Autor</button>
           <div class="dropdown-content">
               <a href="../../autor/lista">Listar Todos</a>
               <a href="../../autor/inserir">Cadastrar</a>
-              <a href="../../autor/busca">Excluir</a>
+              <a href="../../autor/busca">Buscar</a>
+              <a href="#">Gerenciar</a>
             </div>
       </div>
 
@@ -110,29 +112,15 @@ h2, h3, h1{
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="dropdown">
-          <button class="dropbtn">Emprestimos</button>
+          <button class="dropbtn">Meu Perfil</button>
             <div class="dropdown-content">
-                <a href="../../usuario/atualiza">Fazer Emprestimo</a>
-                <a href="../../biblioteca/inserir"Receber Livro</a>
-                <a href="#">Listar Emprestimos</a>
-                <a href="#">Buscar Emprestimo</a>
-              </div>
-        </div>
-        <div class="dropdown">
-          <button class="dropbtn">Outros</button>
-            <div class="dropdown-content">
-                <a href="../../usuario/atualiza">Listar Reservas</a>
-                <a href="../../biblioteca/inserir">Buscar Reservas</a>
+                <a href="../../usuario/atualiza">Atualizar Dados</a>
+                <a href="../../biblioteca/inserir">Enviar Mensagens</a>
                 <a href="#">Ler Mensagens</a>
-                <a href="#">Escrever Mensagens</a>
               </div>
         </div>
-        <div class="dropdown">
-          <button class="dropbtn">Logout</button>
-            <div class="dropdown-content">
-                <a href="../../logout/">Logout Geral</a>
-                <a href="../../usuario/busca">Logout da Biblioteca</a>
-              </div>
+        <div>
+          <a href="../../logout/"class="button">Logout</a>
         </div>
     </nav>
     {% block content %}

@@ -52,3 +52,15 @@ def lista_item(request,liv):
         return render(request, "item/lista.html", contexto)
     else:
         return HttpResponseRedirect('../../login/')
+
+
+def lista_item_biblioteca(request,nome):
+    if request.user.is_authenticated:
+        livros=LivBib.objects.filter(biblioteca=nome)
+        item = Item.objects.filter(livbib__in=livros)
+        contexto = {
+            'item': item
+            }
+        return render(request, "item/lista.html", contexto)
+    else:
+        return HttpResponseRedirect('../../login/')
