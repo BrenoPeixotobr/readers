@@ -27,6 +27,7 @@ def insere_livro(request):
                 return render_to_response("erros/erro_form.html",{'form': form})
         else:
             form = PostLivro()
+            form.fields["autor"]=forms.ModelMultipleChoiceField(queryset=Autor.objects.all(),widget=forms.CheckboxSelectMultiple)
             return render(request, "livro/inserir.html",{'form': form})
     else:
         return HttpResponseRedirect('../../login/')

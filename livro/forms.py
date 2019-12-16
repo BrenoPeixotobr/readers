@@ -11,6 +11,7 @@ class PostLivro(forms.ModelForm):
     anoPublicacao = forms.CharField(label='Ano de publicação')
     editora = forms.CharField(label='Editora')
     edicao = forms.IntegerField(label='Edição')
+    
     class Meta:
         model = Livro
         fields = ('isbn','titulo', 'area','subarea','anoPublicacao','editora','edicao','autor')

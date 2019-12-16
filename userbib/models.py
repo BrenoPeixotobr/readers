@@ -8,7 +8,7 @@ class UserBib(models.Model):
 
 
     def __str__(self):
-        return str(self.livro)
+        return str(self.usuario)
 
 
 # Create your models here.
