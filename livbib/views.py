@@ -109,7 +109,6 @@ def insere_bib(request,biblioteca):
 def lista_livros_biblioteca(request,nome):
     if request.user.is_authenticated:
         liv = LivBib.objects.filter(biblioteca=nome)
-
         contexto = {
             'liv': liv
             }

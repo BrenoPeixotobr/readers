@@ -25,7 +25,7 @@ def insere_item(request,pk):
             if form.is_valid():
                 post = form.save(commit=False)
                 post.save()
-                return HttpResponseRedirect('../lista/')
+                return HttpResponseRedirect('../lista/'+str(pk))
             else:
                 return render_to_response("erros/erro_form.html",{'form': form})
         else:
@@ -37,9 +37,15 @@ def insere_item(request,pk):
         return HttpResponseRedirect('../../login/')
 
 
-def lista_item(request):
+def lista_item(request,liv):
     if request.user.is_authenticated:
-        item = Item.objects.all()
+        bib=LivBib.objects.filter(idLivBib=liv).values("biblioteca")
+        c=str(bib)
+        c2=c.split(':')
+        c3=c2[1].split("'")
+        biblioteca=c3[1]
+        livros=LivBib.objects.filter(biblioteca=biblioteca)
+        item = Item.objects.filter(livbib__in=livros)
         contexto = {
             'item': item
             }

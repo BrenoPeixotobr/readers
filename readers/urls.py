@@ -28,4 +28,5 @@ urlpatterns = [
     path('autor/', include('autor.urls')),
     path('livbib/', include('livbib.urls')),
     path('item/', include('item.urls')),
+    path('emprestimo/', include('emprestimo.urls')),
 ]

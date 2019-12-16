@@ -1,21 +1,20 @@
 from django import forms
 
 from .models import Emprestimo
+from datetime import datetime,  timedelta
 
 class PostEmprestimo(forms.ModelForm):
-    nome=forms.CharField(label='Nome')
-    rua = forms.CharField(label='Rua')
-    numero = forms.IntegerField(label='Número')
-    complemento = forms.CharField(label='Complemento')
-    bairro = forms.CharField(label='Bairro')
-    cidade = forms.CharField(label='Cidade')
-    estado = forms.CharField(label='Estado')
-    pais = forms.CharField(label='País')
-    cep = forms.CharField(label='CEP')
-    email= forms.CharField(label='Email')
-    dataEntrega = forms.DateField(label='Data Entrega',input_formats=['%d/%m/%Y'],widget=forms.DateTimeInput(attrs={'class': 'form-control datetimepicker-input','data-target': '#datetimepicker1'}))
+    #leitor = forms.CharField(label='Leitor')
+    dataEmprestimo = forms.DateTimeField(label='Data de Emprestimo')
+    dataPreDev = forms.DateTimeField(label='Data de Entrega')
+    dataEntrega = forms.DateTimeField(label='Data da Devolução',required=False)
+    #item=forms.IntegerField(label="Livro",widget=forms.TextInput(attrs={'readonly':'readonly'}))
+    #bibliotecario=forms.CharField(label='Bibliotecario',widget=forms.TextInput(attrs={'readonly':'readonly'}))
 
 
     class Meta:
         model = Emprestimo
-        fields = ('nome', 'rua','numero','complemento','bairro','cidade','estado','pais','cep','email','telefone','usuario')
+        fields = ('leitor','dataEmprestimo', 'dataPreDev','dataEntrega','item','bibliotecario')
+
+class PostEntrega(forms.Form):
+    data=forms.DateTimeField(label='Data da Devolução',input_formats=['%d/%m/%Y'],widget=forms.DateTimeInput(attrs={'class': 'form-control datetimepicker-input','data-target': '#datetimepicker1'}))

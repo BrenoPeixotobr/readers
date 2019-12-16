@@ -1,4 +1,4 @@
-{% extends '../base.html' %}
+{% extends '../bibliotecario.html' %}
 {% load bootstrap %}
 {% block content %}
 <div>
@@ -7,12 +7,27 @@
     <th>Livro</th>
     <th>Status</th>
     <th>id</th>
+    <th>Emprestar</th>
+    <th>Devolver</th>
   </tr>
   {% for c in item%}
   <tr>
     <td>{{c.livbib}}</td>
     <td>{{c.status}}</td>
     <td>{{c.idItem}}</td>
+    {%if c.status == 'L' %}
+      <td><a href="../../emprestimo/emprestar/{{c.idItem}}">Emprestar</a></td>
+    {%elif c.status == 'E'%}
+      <td>Emprestado</td>
+    {%else%}
+      <td>Reservado</td>
+    {%endif%}
+    {%if c.status == 'E' %}
+      <td><a href="../../emprestimo/devolver/{{c.idItem}}">Devolver</a></td>
+    {%else%}
+      <td>Opção inválida</td>
+    {%endif%}
+
   </tr>
   {% endfor %}
 </table>
