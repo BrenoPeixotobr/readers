@@ -1,19 +1,18 @@
-{% extends '../base.html' %}
+{% extends '../bibliotecario.html.html' %}
 {% load bootstrap %}
 {% block content %}
 <div>
 <table style="width:100%">
   <tr class="cabecalho_tabela">
     <th>Nome</th>
+    <th>usuario</th>
     <th>cidade</th>
-    <th>Editar</th>
   </tr>
   {% for c in biblioteca %}
   <tr>
-    <td><a href="../../livbib/lista_livros_biblioteca/{{c.nome}}">{{c.nome}}</a></td>
+    <td>{{c.nome}}</td>
+    <td>{{ c.usuario}}</td>
     <td>{{ c.cidade}}</td>
-    <td><a href="../../biblioteca/atualiza/{{c.nome}}">Editar</a></td>
-
   </tr>
   {% endfor %}
 </table>

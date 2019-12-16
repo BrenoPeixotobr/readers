@@ -9,5 +9,6 @@ urlpatterns = [
     path('atualiza/<str:nome>', views.atualiza, name='atualiza'),
     path('atualiza/', views.atualiza, name='atualiza'),
     path('minhas_biblioteca/', views.minhas_biblioteca, name='minhas_biblioteca'),
+    path('lista_livros/<str:nome>', views.lista_livros, name='lista_livros'),
 
 ]

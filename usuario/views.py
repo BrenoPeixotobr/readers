@@ -76,7 +76,7 @@ def primeiro_login(request):
                 if form.is_valid():
                     post = form.save(commit=False)
                     post.save()
-                    return HttpResponseRedirect('../lista/')
+                    return HttpResponseRedirect('../busca/')
                 else:
                     return render_to_response("erros/erro_form.html",{'form': form})
             else:

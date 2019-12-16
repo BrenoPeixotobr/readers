@@ -1,0 +1,21 @@
+{% extends '../base.html' %}
+{% load bootstrap %}
+{% block content %}
+<div>
+<table style="width:100%">
+  <tr  class="cabecalho_tabela">
+    <th>Livro</th>
+    <th>Status</th>
+    <th>id</th>
+  </tr>
+  {% for c in item%}
+  <tr>
+    <td>{{c.livbib}}</td>
+    <td>{{c.status}}</td>
+    <td>{{c.idItem}}</td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+
+{% endblock %}

@@ -105,3 +105,14 @@ def insere_bib(request,biblioteca):
             return render(request, "livbib/inserir.html",{'form': form})
     else:
         return HttpResponseRedirect('../../login/')
+
+def lista_livros_biblioteca(request,nome):
+    if request.user.is_authenticated:
+        liv = LivBib.objects.filter(biblioteca=nome)
+
+        contexto = {
+            'liv': liv
+            }
+        return render(request, "livbib/lista.html", contexto)
+    else:
+        return HttpResponseRedirect('../../login/')

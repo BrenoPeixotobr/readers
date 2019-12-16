@@ -1,4 +1,4 @@
-{% extends '../base.html' %}
+{% extends '../bibliotecario.html' %}
 {% load bootstrap %}
 {% block content %}
 <div>
@@ -6,15 +6,13 @@
   <tr  class="cabecalho_tabela">
     <th>Biblioteca</th>
     <th>Livro</th>
-    <th>Quantidade</th>
-    <th>Quantidade Total</th>
+    <th>Cadastar item</th>
   </tr>
   {% for c in liv %}
   <tr>
     <td>{{c.biblioteca}}</td>
     <td>{{c.livro}}</td>
-    <td>{{c.quantidade}}</td>
-    <td>{{c.quantidadeTotal}}</td>
+    <td><a href="../../item/inserir/{{c.idLivBib}}">Cadastrar</a></td>
   </tr>
   {% endfor %}
 </table>

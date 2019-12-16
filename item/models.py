@@ -15,7 +15,7 @@ ESTADO_CHOICES = (
 class Item(models.Model):
     idItem=models.AutoField(primary_key=True)
     livbib = models.ForeignKey(LivBib, on_delete=models.CASCADE)
-    staus=models.CharField(max_length=1, choices=STATUS_CHOICES, blank=False, null=False,default='L')
+    status=models.CharField(max_length=1, choices=STATUS_CHOICES, blank=False, null=False,default='L')
     estado=models.CharField(max_length=1, choices=ESTADO_CHOICES, blank=False, null=False,default='L')
 
     def __str__(self):

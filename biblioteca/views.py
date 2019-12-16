@@ -92,4 +92,12 @@ def minhas_biblioteca(request):
             return render(request, "biblioteca/erros.html", contexto)
     else:
         return HttpResponseRedirect('../../login/')
+
+
+
+def lista_livros(request,biblioteca):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('../../livbib/lista_livros_biblioteca/'+biblioteca)
+    else:
+        return HttpResponseRedirect('../../login/')
 # Create your views here.
