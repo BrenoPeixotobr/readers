@@ -7,22 +7,16 @@
     <th>ID</th>
     <th>Leitor</th>
     <th>item</th>
-    <th>Data de Emprestimo</th>
-    <th>Data de Devolução</th>
-    <th>Receber</th>
+    <th>Data de Prevista</th>
+    <th>Data de Entrega</th>
   </tr>
   {% for c in emprestimo%}
   <tr>
     <td>{{c.idEmprestimo}}</td>
     <td>{{c.leitor}}</td>
     <td>{{c.item}}</td>
-    <td>{{c.dataEmprestimo}}</td>
     <td>{{c.dataPreDev}}</td>
-    {%if not c.dataEntrega%}
-    <td><a href="../../emprestimo/devolver/{{c.idEmprestimo}}/{{c.item}}">Receber</a></td>
-    {%else%}
-    <td>Livro Devolvido</td>
-    {%endif%}
+    <td>{{c.dataEntrega}}</td>
   </tr>
   {% endfor %}
 </table>

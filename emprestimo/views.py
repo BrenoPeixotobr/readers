@@ -29,6 +29,7 @@ def emprestar(request,id):
                 c3=c2[1].split("}")
                 user = get_object_or_404(User, pk=c3[0])
                 autorizado = authenticate(username=user,password=form['password'].value())
+                print(form['item'].value())
                 if autorizado:
                     post = form.save(commit=False)
                     Item.objects.filter(idItem=id).update(status="E")
@@ -55,19 +56,19 @@ def emprestar(request,id):
     else:
         return HttpResponseRedirect('../../login/')
 
-def devolver(request,id):
+def devolver(request,id,item):
     if request.user.is_authenticated:
         if request.method == "POST":
             form = PostEntrega(request.POST)
             if form.is_valid():
-                Emprestimo.objects.filter(item=id).update(dataEntrega=dateutil.parser.parse(form['data'].value()))
-                Item.objects.filter(idItem=id).update(status="L")
-                liv=Item.objects.filter(idItem=id).values("livbib")
+                Emprestimo.objects.filter(idEmprestimo=id).update(dataEntrega=dateutil.parser.parse(form['data'].value()))
+                Item.objects.filter(idItem=item).update(status="L")
+                liv=Item.objects.filter(idItem=item).values("livbib")
                 c=str(liv)
                 c2=c.split(': ')
                 c3=c2[1].split("}")
                 livbib=c3[0]
-                return HttpResponseRedirect('../../item/lista/'+livbib)
+                return HttpResponseRedirect('../../devolver_emprestimo/'+str(id))
             else:
                 return render_to_response("erros/erro_form.html",{'form': form})
         else:
@@ -75,6 +76,28 @@ def devolver(request,id):
             return render(request, "emprestimo/inserir.html",{'form': form})
     else:
         return HttpResponseRedirect('../../login/')
+
+def lista_emprestimo(request):
+    if request.user.is_authenticated:
+        emprestimo = Emprestimo.objects.all().order_by('dataEmprestimo').reverse()
+        contexto = {
+            'emprestimo': emprestimo
+            }
+        return render(request, "emprestimo/lista.html", contexto)
+    else:
+        return HttpResponseRedirect('../../login/')
+
+def devolver_emprestimo(request,id):
+    if request.user.is_authenticated:
+        emprestimo = Emprestimo.objects.filter(idEmprestimo=id)
+        contexto = {
+            'emprestimo': emprestimo
+            }
+        return render(request, "emprestimo/devolver.html", contexto)
+    else:
+        return HttpResponseRedirect('../../login/')
+
+
 
 
 

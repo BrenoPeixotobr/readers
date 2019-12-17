@@ -9,7 +9,7 @@ class Reserva(models.Model):
     leitor=models.ForeignKey(Usuario, on_delete=models.CASCADE,related_name='Reserva_leitor')
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     dataReserva = models.DateTimeField(default=datetime.now(), blank=True)
-    dataExpira = models.DateTimeField(default=datetime.now() + timedelta(days=7), blank=True)
+    dataExpira = models.DateTimeField(default=datetime.now() + timedelta(days=2), blank=True)
 
     def __str__(self):
         return str(self.livro)

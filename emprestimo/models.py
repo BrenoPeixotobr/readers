@@ -14,7 +14,7 @@ class Emprestimo(models.Model):
     dataEntrega = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return str(self.bibliotecario)
+        return str(self.idEmprestimo)
 
 
 # Create your models here.

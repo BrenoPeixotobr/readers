@@ -10,6 +10,7 @@
     <th>Listar Livros</th>
     <th>Novos Exemplares</th>
     <th>Novos Livros</th>
+    <th>Emprestimo</th>
   </tr>
   {% for c in biblioteca %}
   <tr>
@@ -19,6 +20,7 @@
     <td><a href="../../item/lista_nome/{{c.nome}}">Livros</a></td>
     <td><a href="../../livbib/lista/{{c.nome}}">Novos Exemplares</a></td>
     <td><a href="../../livbib/inserir">Novos Livros</a></td>
+    <td><a href="../../emprestimo/lista">Listar</a></td>
 
   </tr>
   {% endfor %}
