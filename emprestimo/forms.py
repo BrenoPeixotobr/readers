@@ -7,7 +7,7 @@ class PostEmprestimo(forms.ModelForm):
     #leitor = forms.CharField(label='Leitor')
     #dataEmprestimo = forms.DateTimeField(label='Data de Emprestimo')
     #dataPreDev = forms.DateTimeField(label='Data de Entrega')
-    password=forms.CharField(widget=forms.PasswordInput)
+    password=forms.CharField(widget=forms.PasswordInput,label='Senha do Leitor')
     #item=forms.IntegerField(label="Livro",widget=forms.TextInput(attrs={'readonly':'readonly'}))
     #bibliotecario=forms.CharField(label='Bibliotecario',widget=forms.TextInput(attrs={'readonly':'readonly'}))
 

@@ -77,9 +77,11 @@ def devolver(request,id,item):
     else:
         return HttpResponseRedirect('../../login/')
 
-def lista_emprestimo(request):
+def lista_emprestimo(request,biblioteca):
     if request.user.is_authenticated:
-        emprestimo = Emprestimo.objects.all().order_by('dataEmprestimo').reverse()
+        livbib=LivBib.objects.filter(biblioteca=biblioteca)
+        itens=Item.objects.filter(livbib__in=livbib)
+        emprestimo = Emprestimo.objects.filter(item__in=itens).order_by('dataEmprestimo').reverse()
         contexto = {
             'emprestimo': emprestimo
             }
