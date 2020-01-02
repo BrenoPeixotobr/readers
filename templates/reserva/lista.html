@@ -1,0 +1,22 @@
+{% extends '../base.html' %}
+{% load bootstrap %}
+{% block content %}
+
+  <div>
+  <table style="width:100%">
+    <tr  class="cabecalho_tabela">
+      <th>ID</th>
+      <th>Leitor</th>
+      <th>Data Final</th>
+    </tr>
+    {% for c in reserva %}
+    <tr>
+      <td><a href="../../reserva/cancela/{{c.idReserva}}">{{c.idReserva}}</a></td>
+      <td>{{ c.leitor}}</td>
+      <td>{{ c.dataExpira }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+
+{% endblock %}

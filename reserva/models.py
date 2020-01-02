@@ -12,7 +12,7 @@ class Reserva(models.Model):
     dataExpira = models.DateTimeField(default=datetime.now() + timedelta(days=2), blank=True)
 
     def __str__(self):
-        return str(self.livro)
+        return str(self.idReserva)
 
 
 

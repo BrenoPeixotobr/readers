@@ -11,6 +11,7 @@ from  .forms import PostEmprestimo, PostEntrega
 from biblioteca.models import Biblioteca
 from usuario.models import Usuario
 from livro.models import Livro
+from reserva.models import Reserva
 from livbib.models import LivBib
 from item.models import Item
 from item.models import Item
@@ -100,6 +101,45 @@ def devolver_emprestimo(request,id):
         return HttpResponseRedirect('../../login/')
 
 
+
+def efetuarReserva(request,id):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = PostEmprestimo(request.POST)
+            if form.is_valid():
+                user=Usuario.objects.filter(CPF=form['leitor'].value()).values('user_id')
+                c=str(user)
+                c2=c.split(': ')
+                c3=c2[1].split("}")
+                user = get_object_or_404(User, pk=c3[0])
+                autorizado = authenticate(username=user,password=form['password'].value())
+                print(form['item'].value())
+                if autorizado:
+                    post = form.save(commit=False)
+                    Item.objects.filter(idItem=id).update(status="E")
+                    liv=Item.objects.filter(idItem=id).values("livbib")
+                    c=str(liv)
+                    c2=c.split(': ')
+                    c3=c2[1].split("}")
+                    livbib=c3[0]
+                    post.save()
+                    return HttpResponseRedirect('../../item/lista/'+livbib)
+                else:
+                    mensagem_de_erro="Leitor ou senha invalidos!"
+                    contexto = {
+                        'mensagem_de_erro': mensagem_de_erro
+                        }
+                    return render(request, "emprestimo/erros.html", contexto)
+            else:
+                return render_to_response("erros/erro_form.html",{'form': form})
+        else:
+            #leitor=Reserva.objects.filter()
+            form = PostEmprestimo()
+            form.fields["item"]=forms.ModelChoiceField(queryset=Item.objects.filter(idItem=id),initial={'item':id})
+            form.fields["bibliotecario"]=forms.ModelChoiceField(queryset=Usuario.objects.filter(user=request.user.id))
+            return render(request, "emprestimo/inserir.html",{'form': form})
+    else:
+        return HttpResponseRedirect('../../login/')
 
 
 

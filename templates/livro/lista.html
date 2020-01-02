@@ -7,13 +7,13 @@
     <tr  class="cabecalho_tabela">
       <th>Titulo</th>
       <th>ISBN</th>
-      <th>Autor</th>
+      
     </tr>
     {% for c in livro %}
     <tr>
       <td><a href="../../livbib/lista_livro_leitor/{{c.titulo}}">{{c.titulo}}</a></td>
       <td>{{ c.isbn}}</td>
-      <td>{% for autor in c.autor.all %}{{ autor }}<br/>{% endfor %}</td>
+
     </tr>
     {% endfor %}
   </table>
