@@ -47,7 +47,7 @@ django-adminlte==1.2
 django-adminlte2==0.4.1
 django-bootstrap-form==3.4
 django-pandas==0.6.1
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 docutils==0.14
 entrypoints==0.3
